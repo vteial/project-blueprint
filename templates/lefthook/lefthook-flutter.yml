@@ -1,0 +1,12 @@
+# lefthook.yml for Flutter projects
+# Copy to project root as lefthook.yml
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.dart"
+      run: dart format --set-exit-if-changed .
+    analyze:
+      glob: "*.dart"
+      run: dart analyze --fatal-infos

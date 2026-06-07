@@ -1,0 +1,11 @@
+# lefthook.yml for Vue + TypeScript projects
+# Copy to project root as lefthook.yml
+
+pre-commit:
+  parallel: true
+  commands:
+    typecheck:
+      glob: "*.{ts,vue}"
+      run: pnpm vue-tsc --noEmit
+    unit-tests:
+      run: pnpm test:unit --run
