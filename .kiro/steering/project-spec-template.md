@@ -104,8 +104,19 @@ Before each sprint completion, verify:
 - [ ] Tests passing with coverage ≥ {{COVERAGE_TARGET}}%
 - [ ] No TypeScript/lint errors
 - [ ] Responsive on mobile + desktop
+- [ ] Spec delta documented (ADDED/MODIFIED/REMOVED in sprint tracker)
 - [ ] Docs updated (`/project-update`)
 - [ ] Sprint tracker current
+
+## Change Tracking
+
+This spec represents the **current state** of the system — it is updated in-place.
+
+For the **change history** (what was added, modified, or removed and when), see:
+- `docs/spec-changelog.md` — Cumulative delta log (append-only, per sprint)
+- `docs/sprint-tracker.md` — Inline `### Spec Delta` section per completed sprint
+
+**Convention:** When this spec is updated via `/project-update`, also append the corresponding delta entry to `docs/spec-changelog.md`. See `guides/10-delta-tracking.md` for the full convention.
 
 <!--
 INSTRUCTIONS FOR FILLING THIS TEMPLATE:
@@ -116,6 +127,8 @@ INSTRUCTIONS FOR FILLING THIS TEMPLATE:
 4. Keep the file under 200 lines — this is loaded into AI context on every interaction
 5. Update this file when major architectural decisions change
 6. Use specific, concrete values — avoid vague descriptions
+7. This file is the "what IS" — always reflects current truth
+8. For "what CHANGED" history, see docs/spec-changelog.md
 
 EXAMPLES:
 - Saranidhi (Flutter): Language=Dart, Framework=Flutter, State=Riverpod, DB=Supabase

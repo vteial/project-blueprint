@@ -261,3 +261,59 @@ Multi-platform app for freelancers: invoices, time tracking, clients.
 - GoRouter for navigation.
 - Never use BuildContext in async operations.
 ```
+
+
+## Steering + Delta Tracking
+
+The steering file represents **current state** — it answers "how does the system work right now?" It is updated **in-place** during `/project-update`.
+
+But updating in-place loses history. To preserve the narrative of *what changed and when*, we use **delta tracking** alongside the steering file:
+
+```
+.kiro/steering/project-spec.md  →  "What IS" (updated in-place)
+docs/spec-changelog.md          →  "What CHANGED" (append-only history)
+docs/sprint-tracker.md          →  "What changed THIS sprint" (inline per sprint)
+```
+
+### How They Work Together
+
+| Event | Steering File | Spec Changelog |
+|-------|--------------|----------------|
+| Sprint adds new entity | Add entity to spec | Append ADDED entry |
+| Sprint changes business rule | Update rule in spec | Append MODIFIED entry (was X, now Y) |
+| Sprint removes feature | Remove from spec | Append REMOVED entry (with reason) |
+| Refactoring (no behavior change) | No change | No entry |
+
+### Example Flow (Sprint 12 adds receipt uploads)
+
+**1. Steering file gets updated in-place:**
+```markdown
+## Core Domain Entities
+| Entity | Key Fields |
+|--------|------------|
+| ProjectExpense | id, cost_cents, ..., receipt_url |  ← field added
+```
+
+**2. Spec changelog gets appended:**
+```markdown
+## Sprint 12: Receipt Attachments
+### ADDED
+- `receipt_url: string | null` on ProjectExpense
+- Supabase Storage bucket `receipts` with RLS
+- ReceiptUploader component
+```
+
+**3. Sprint tracker gets inline delta:**
+```markdown
+## Sprint 12: Receipt Attachments ✅ Complete (PR #32)
+[tasks...]
+### Spec Delta
+**ADDED:** receipt_url field, storage bucket, uploader component
+```
+
+This gives you three levels of detail:
+- **Quick glance** → sprint tracker inline delta
+- **Full history** → spec-changelog.md
+- **Current truth** → steering file
+
+See `guides/10-delta-tracking.md` for the complete delta tracking convention.

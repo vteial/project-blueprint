@@ -18,6 +18,21 @@
 
 **Summary:** Project scaffolding complete. Ready for Sprint 1.
 
+### Spec Delta
+
+**ADDED:**
+- Project scaffold: framework, state management, routing, database schema
+- CI pipeline (GitHub Actions): lint + test + build
+- Pre-commit hooks (Lefthook): format + lint
+- Deployment configuration (Vercel/hosting)
+- Steering file with initial system spec
+
+**MODIFIED:**
+- (none — initial setup)
+
+**REMOVED:**
+- (none — initial setup)
+
 ---
 
 ## Sprint 1 — Core Foundation (Completed)
@@ -38,6 +53,21 @@
 **Test count:** {{COUNT}} tests ({{PASSING}} passing)
 **Coverage:** {{COVERAGE}}%
 **Summary:** Core data model and auth working. Navigation complete.
+
+### Spec Delta
+
+**ADDED:**
+- Core data entity: `{{ENTITY_NAME}}` with CRUD operations
+- Authentication flow: login, logout, register, session management
+- Route guard: unauthenticated → `/login`, authenticated at `/login` → `/dashboard`
+- Navigation structure: [bottom tabs / sidebar / drawer]
+- Unit test foundation: {{COUNT}} assertions
+
+**MODIFIED:**
+- (none — first feature sprint)
+
+**REMOVED:**
+- (none — first feature sprint)
 
 ---
 
@@ -60,6 +90,20 @@
 **Coverage:** {{COVERAGE}}%
 **Summary:** Feature set expanded. Dashboard and analytics operational.
 
+### Spec Delta
+
+**ADDED:**
+- {{FEATURE_4}}: [brief description of new capability]
+- {{FEATURE_5}}: [brief description]
+- Dashboard analytics: KPI cards, charts, summary metrics
+- Responsive layout: mobile-first with 1200px max-width desktop
+
+**MODIFIED:**
+- [Any changed behaviors from Sprint 1 — e.g., "Feed sort: now by date descending (was: creation order)"]
+
+**REMOVED:**
+- (none)
+
 ---
 
 ## Sprint 3 — Polish & Extended Features (Completed)
@@ -81,6 +125,20 @@
 **Coverage:** {{COVERAGE}}%
 **Summary:** UI polished. Extended features complete. Performance optimized.
 
+### Spec Delta
+
+**ADDED:**
+- Dark mode / theming: CSS custom properties, system preference detection, localStorage persistence
+- {{FEATURE_7}}: [description]
+- {{FEATURE_8}}: [description]
+- E2E test suite: [X] critical path scenarios
+
+**MODIFIED:**
+- [Any changed behaviors — e.g., "Navigation: bottom tabs replace drawer (was: side drawer)"]
+
+**REMOVED:**
+- [Any deprecated features — e.g., "Removed legacy sort option (replaced by server-side filtering)"]
+
 ---
 
 ## Sprint 4 — Release Preparation (Completed)
@@ -101,6 +159,18 @@
 **Test count:** {{COUNT}} tests ({{PASSING}} passing)
 **Coverage:** {{COVERAGE}}%
 **Summary:** Release 1.0 shipped. All quality gates met.
+
+### Spec Delta
+
+**ADDED:**
+- Security hardening: [specific measures added]
+- Production deployment: `prod` branch → Cloudflare Pages
+
+**MODIFIED:**
+- Coverage threshold: raised to {{FINAL_THRESHOLD}}% (was: {{INITIAL_THRESHOLD}}%)
+
+**REMOVED:**
+- (none)
 
 ---
 
@@ -155,4 +225,13 @@
 - Update this file with /finish-sprint or /project-update
 - Moved tasks: note original sprint in "Notes" column
 - Keep completed sprints for history; collapse if file gets too long
+
+DELTA TRACKING:
+- Every completed sprint MUST include a "### Spec Delta" section
+- Use ADDED / MODIFIED / REMOVED format
+- Only include spec-level changes (not refactoring, test-only, or CI changes)
+- Delta entries should name specific entities, types, components, or routes
+- For MODIFIED items, note "was X, now Y" where helpful
+- This inline delta feeds into docs/spec-changelog.md (cumulative history)
+- See guides/10-delta-tracking.md for full convention details
 -->

@@ -86,24 +86,30 @@ Closes the current sprint. Updates tracker, runs final checks, prepares merge.
 
 ### `/project-update`
 
-Syncs all documentation files with current project state.
+Syncs all documentation files with current project state, including delta tracking.
 
 **Example:**
 ```
 /project-update
 
+→ Updates docs/spec-changelog.md (appends delta entry for this sprint)
+→ Updates docs/sprint-tracker.md (adds inline spec delta section)
 → Updates docs/project-evaluation.md (test counts, coverage)
 → Updates docs/project-valuation-report.md (time tracking)
-→ Updates docs/sprint-tracker.md (current status)
 → Updates docs/testing-plan.md (test count progression)
-→ Output: "Documentation synced. 4 files updated."
+→ Updates .kiro/steering/ spec (current state in-place)
+→ Output: "Documentation synced. 6 files updated. Delta tracked."
 ```
 
 **Files updated:**
-- `docs/project-evaluation.md` — Test metrics, quality scores
-- `docs/project-valuation-report.md` — Hours, session log
-- `docs/sprint-tracker.md` — Task completion status
+- `docs/spec-changelog.md` — **★ Append** new delta entry (ADDED/MODIFIED/REMOVED for this sprint)
+- `docs/sprint-tracker.md` — Add inline `### Spec Delta` section to completed sprint
+- `docs/project-evaluation.md` — Test metrics, quality scores, resolved defects
+- `docs/project-valuation-report.md` — Hours, commit timeline, session log
 - `docs/testing-plan.md` — Test count progression table
+- `.kiro/steering/{{SPEC_FILE}}` — Update current state **in-place** (if tech stack changed)
+
+**Delta tracking rule:** The steering spec is updated in-place (always reflects current state). The spec-changelog is appended (preserves full change history). Both happen in the same `/project-update` run. See `guides/10-delta-tracking.md` for the full convention.
 
 ### `/plan`
 
@@ -273,6 +279,7 @@ Before marking a sprint complete:
 - [ ] CI pipeline green on sprint branch
 - [ ] Coverage threshold met
 - [ ] Sprint tracker updated
+- [ ] Spec delta documented (ADDED/MODIFIED/REMOVED)
 - [ ] Documentation current (`/project-update` run)
 - [ ] No known regressions
 - [ ] PR merged to main

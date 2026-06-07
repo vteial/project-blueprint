@@ -49,7 +49,8 @@ project-blueprint/
 │       └── feature_request.md          # Feature request template
 ├── docs/
 │   ├── dev-workflow.md                 # Sprint flow & protocols
-│   ├── sprint-tracker.md              # Sprint history & status
+│   ├── sprint-tracker.md              # Sprint history & status (with inline deltas)
+│   ├── spec-changelog.md              # ★ Cumulative spec change history
 │   ├── project-plan.md                # Architecture & data design
 │   ├── project-evaluation.md          # Quality scorecard
 │   ├── project-valuation-report.md    # Time investment tracking
@@ -67,7 +68,8 @@ project-blueprint/
 │   ├── 06-project-valuation.md        # AI+20% time tracking
 │   ├── 07-release-planning.md         # Release numbering & gates
 │   ├── 08-migration-convention.md     # Database migration patterns
-│   └── 09-prod-rollout.md             # Deployment & rollback
+│   ├── 09-prod-rollout.md             # Deployment & rollback
+│   └── 10-delta-tracking.md           # ★ Spec change history convention
 ├── templates/
 │   ├── ci/
 │   │   ├── ci-flutter.yml             # Flutter CI pipeline
@@ -106,6 +108,31 @@ project-blueprint/
 3. **AI+20% Rule** — Track AI-assisted time, add 20% for review/debugging. See `guides/06-project-valuation.md`.
 4. **Docs-Only Branches** — Documentation updates ship in their own PRs. Never block a feature branch on docs.
 5. **Tables Over Prose** — Use tables for status tracking, comparisons, and checklists. Prose for explanations.
+6. **Delta Tracking** — Record WHAT changed (ADDED/MODIFIED/REMOVED) per sprint. The spec is the current truth; the changelog is the evolution history. See `guides/10-delta-tracking.md`.
+
+---
+
+## Release Plan
+
+### Release 1.0 (Current)
+
+The template ships with:
+- Complete sprint protocol system (`/start-sprint`, `/finish-sprint`, `/project-update`, `/plan`, `/hotfix`, `/rollout`)
+- 11 documentation templates in `docs/`
+- 10 deep guides in `guides/`
+- Ready-made CI, lefthook, deployment, and migration templates
+- **Delta tracking** — spec change history with ADDED/MODIFIED/REMOVED convention (inspired by [OpenSpec](https://github.com/Fission-AI/OpenSpec))
+- Steering file template with auto-inclusion
+
+### Release 2.0 (Planned)
+
+| Feature | Description | Inspired By |
+|---------|-------------|-------------|
+| **Per-Feature Design Docs** | Lightweight `design-notes.md` per sprint/feature documenting approach, alternatives considered, and constraints discovered | OpenSpec `design.md` artifact |
+| **Verify Concept** | Structured verification checklist checking completeness, correctness, and coherence before archive/release | OpenSpec `/opsx:verify` command |
+| **Onboarding Guide** | Template for onboarding new contributors using the blueprint conventions | Community feedback |
+
+---
 
 ## Quick Start Checklist
 
