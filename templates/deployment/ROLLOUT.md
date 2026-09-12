@@ -82,6 +82,19 @@ not the gate.
 
 > Ref: Vercel — [Automated access to protected deployments](https://vercel.com/docs/deployment-protection/automated-agent-access).
 
+## Deployment budget (free/Hobby daily deployment cap)
+
+> Only relevant on tiers that cap **deployments per day** (Vercel Hobby = 100/24h). Two traps:
+> a **skipped `ignoreCommand` build still counts** as a deployment, and **each connected
+> project** emits its own deployment per push. See
+> [`guides/09-prod-rollout.md` §3](../../guides/09-prod-rollout.md) for the full rationale.
+
+- [ ] **`vercel.json` → `git.deploymentEnabled`** denies non-previewable branch families
+      (e.g. `docs/**`, `plan/**`) so they never deploy (never count). Kept in sync with the
+      branch-naming convention.
+- [ ] **Any extra project** (e.g. a separate staging project) → Preview **Branch Tracking OFF**
+      so it deploys only its own production branch, not a redundant preview per push.
+
 ### 5. Post-Deploy Verification
 
 - [ ] Application accessible
