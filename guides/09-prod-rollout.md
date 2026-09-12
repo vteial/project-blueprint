@@ -49,6 +49,44 @@ Developer Machine          Staging                   Production
      │                        │                          │
 ```
 
+## Preview Deployments & Automated QA
+
+Most hosts (Vercel, Netlify, Cloudflare Pages) build a **per-PR preview deployment**. Run the
+pre-merge smoke test on the **PR preview**, not staging — staging deploys from `main`, so a
+release branch's version bump and changes aren't on staging until the PR merges. The preview is
+built from the release-branch head and shows the correct new version, making it the right
+pre-merge gate.
+
+Two recurring problems and their fixes:
+
+### 1. Skip builds for changes that can't affect the bundle
+
+Docs / process / `.kiro` / CI-config commits trigger a full preview build and burn build
+minutes for no user-visible change. Gate builds with an **allowlist** ignore step: build only
+when a commit touched a path that can affect the shipped bundle; otherwise skip.
+
+- **Fail-safe direction:** the list is an *allowlist of app-affecting paths* (build if any
+  changed). Anything unknown falls through to **build** — a wasted build at worst, never a
+  silent skip that ships stale code.
+- On Vercel this is [`vercel.json`](../templates/deployment/vercel.json)'s `ignoreCommand`
+  pointing at [`templates/deployment/ignore_build.sh`](../templates/deployment/ignore_build.sh)
+  (copy it, then edit the `APP_PATHS` allowlist for your stack — e.g. `src/`, `public/`,
+  `package.json`, `package-lock.json`, `vite.config.ts`, `vercel.json`).
+
+### 2. Deployment-protection SSO blocks headless QA agents
+
+If the host puts previews behind an SSO / password wall (Vercel **Deployment Protection**),
+a headless QA agent can't reach them. The permanent fix is **Protection Bypass for Automation**:
+
+1. Enable it in the host's project settings; it issues a secret token.
+2. Store the token as `DEPLOYMENT_BYPASS_SECRET` in a **gitignored** `.env` (never commit it).
+3. Give the QA agent the preview URL with the bypass query params appended:
+   `<preview-url>?x-vercel-protection-bypass=<secret>&x-vercel-set-bypass-cookie=true`
+   (Vercel param names; other hosts differ — check their docs.)
+
+Protection stays **on** for humans; this only lets the automated run through. Reference this in
+`/release-start` so the preview access details are handed to QA-Verify every release.
+
 ## `/release-finish` Checklist Template
 
 ```markdown

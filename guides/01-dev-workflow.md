@@ -134,6 +134,11 @@ Acceptance: User can create projects, assign expenses, filter by project
 - Post-deploy smoke tests
 - Rollback readiness confirmation
 
+> **Preview deployments & automated QA:** run the pre-merge smoke test on the **PR preview**
+> (not staging), skip builds for changes that can't affect the bundle, and — if previews sit
+> behind SSO — hand a headless QA agent a Protection-Bypass token. See
+> [Guide 09 — Production Rollout § Preview Deployments & Automated QA](09-prod-rollout.md#preview-deployments--automated-qa).
+
 ## Responsibility Split
 
 | Task | AI (Kiro/IDE) | Human | Why |
