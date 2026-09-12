@@ -1,5 +1,7 @@
 # Testing Plan
 
+> **Reviewed:** vX.Y.Z · **Next review:** every release (test-count + scenarios).
+
 ## Testing Framework Stack
 
 | Layer | Tool | Purpose |

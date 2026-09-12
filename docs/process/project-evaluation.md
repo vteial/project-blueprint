@@ -1,5 +1,10 @@
 # Project Evaluation
 
+> **Reviewed:** vX.Y.Z · **Next review:** every `/sprint-update`.
+> **Scope:** *quality & defects* (scorecard, quality baseline, resolved-defects log).
+> Delivery accounting (sprints/PRs/hours) lives in `project-valuation-report.md`; the
+> per-feature inventory lives in `sprint-tracker.md` + `CHANGELOG.md` — not duplicated here.
+
 ## Executive Architecture Summary
 
 | Layer | Technology | Status | Notes |

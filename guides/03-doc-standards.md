@@ -4,18 +4,24 @@
 
 Every project using this blueprint should maintain these documents:
 
+> Paths reflect the grouped `docs/` layout (`process/ product/ testing/ reference/`).
+> Each durable doc carries a `> Reviewed: vX.Y.Z` stamp checked by the per-release docs-audit gate.
+
 | # | Document | Purpose | Update Frequency |
 |---|----------|---------|-----------------|
-| 1 | `docs/project-plan.md` | Architecture, data model, features | Sprint start / arch changes |
-| 2 | `docs/sprint-tracker.md` | Sprint history and task status | Every `/finish-sprint` |
-| 3 | `docs/dev-workflow.md` | Protocols and CI/CD | When workflow changes |
-| 4 | `docs/testing-plan.md` | Test strategy and coverage | Every sprint |
-| 5 | `docs/project-evaluation.md` | Quality scores and metrics | Every `/project-update` |
-| 6 | `docs/project-valuation-report.md` | Time investment tracking | Every session |
-| 7 | `docs/release-plan.md` | Scope, gates, risks | Sprint 3+ / pre-release |
-| 8 | `docs/security-review.md` | Security audit checklist | Pre-release |
-| 9 | `docs/smoke-test-plan.md` | Manual test scenarios | Pre-release |
-| 10 | `docs/smoke-test-results.md` | Test execution records | Each smoke test run |
+| 1 | `docs/reference/architecture.md` | Architecture, data model, features | Sprint start / arch changes |
+| 2 | `docs/process/sprint-tracker.md` | Sprint history and task status | Every `/sprint-finish` |
+| 3 | `docs/process/sprint-backlog.md` | Candidate/future work, epics | `/plan` |
+| 4 | `docs/process/dev-workflow.md` | Protocols and CI/CD | When workflow changes |
+| 5 | `docs/testing/testing-plan.md` | Test strategy and coverage | Every sprint |
+| 6 | `docs/process/project-evaluation.md` | Quality & defects | Every `/sprint-update` |
+| 7 | `docs/process/project-valuation-report.md` | Investment & delivery | Every `/sprint-update` |
+| 8 | `docs/process/release-plan.md` | Scope, gates, risks | Sprint 3+ / pre-release |
+| 9 | `docs/reference/security-review.md` | Security posture | Major release / boundary change |
+| 10 | `docs/testing/smoke-test-plan.md` | Manual test scenarios | Pre-release |
+| 11 | `docs/testing/smoke-test-results.md` | Per-release results index | Each release |
+| 12 | `docs/process/sprints/sprint-N-*/` | Per-sprint dossier (spec+impl+test) | Every sprint (Core) |
+| 13 | `docs/testing/releases/` | Per-release dossier (smoke+notes+audit) | Every release (Core) |
 
 ## Optional Documents
 
@@ -46,7 +52,7 @@ Optional — add conventions comment at bottom for AI context:
 ```markdown
 <!-- CONVENTIONS:
 - Status icons: ✅ Done | 🔄 In Progress | 📋 Planned
-- Update this file with /project-update
+- Update this file with /sprint-update
 - Keep tables sorted by [column]
 -->
 ```
@@ -62,10 +68,10 @@ Use HTML comments to give AI tools context without cluttering the human-readable
 
 | Document | Stale After | Auto-updatable | Manual Trigger |
 |----------|------------|----------------|----------------|
-| `sprint-tracker.md` | 1 day without commits | Yes | `/finish-sprint` |
-| `project-evaluation.md` | 1 sprint | Yes | `/project-update` |
+| `sprint-tracker.md` | 1 day without commits | Yes | `/sprint-finish` |
+| `project-evaluation.md` | 1 sprint | Yes | `/sprint-update` |
 | `project-valuation-report.md` | 1 session | Partially | Manual session log |
-| `testing-plan.md` | When tests added | Yes | `/project-update` |
+| `testing-plan.md` | When tests added | Yes | `/sprint-update` |
 | `project-plan.md` | When arch changes | No | Manual review |
 | `release-plan.md` | When scope changes | No | Manual review |
 | `security-review.md` | Pre-release | No | Manual review |
@@ -118,7 +124,7 @@ Tables with similar data should use consistent column names:
 - **Bullets over paragraphs** for lists of items
 - **Concrete over abstract** — include real values, not vague descriptions
 - **Present tense** for current state ("Coverage is 68%")
-- **Imperative** for instructions ("Run `/project-update`")
+- **Imperative** for instructions ("Run `/sprint-update`")
 - **No fluff** — every sentence should add information
 
 ### Good vs Bad
@@ -129,9 +135,9 @@ Tables with similar data should use consistent column names:
 | "We should probably add more tests" | "Coverage gap: `src/utils/` at 42% (target: 70%)" |
 | "The sprint went well" | "Sprint 3: 6/6 tasks complete, +12 tests, +15% coverage" |
 
-## `/project-update` Automation Flow
+## `/sprint-update` Automation Flow
 
-When `/project-update` runs, it:
+When `/sprint-update` runs, it:
 
 1. **Reads** current test output → updates test counts in `testing-plan.md` and `project-evaluation.md`
 2. **Reads** sprint tracker → calculates completion rates for `project-evaluation.md`
@@ -140,7 +146,7 @@ When `/project-update` runs, it:
 5. **Writes** all updated files in a single docs commit
 
 ```
-/project-update
+/sprint-update
 
 Files scanned: 14
 Files updated: 4

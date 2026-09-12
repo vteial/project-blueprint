@@ -49,7 +49,7 @@ Developer Machine          Staging                   Production
      │                        │                          │
 ```
 
-## `/rollout` Checklist Template
+## `/release-finish` Checklist Template
 
 ```markdown
 ## Pre-Deploy

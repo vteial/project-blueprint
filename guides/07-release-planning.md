@@ -102,7 +102,7 @@ Simpler version shipped: [yes/no — what was shipped instead]
 - [ ] Zero lint/type errors
 - [ ] Responsive on mobile + desktop
 - [ ] Sprint tracker updated
-- [ ] Documentation synced (`/project-update`)
+- [ ] Documentation synced (`/sprint-update`)
 - [ ] PR reviewed and merged
 
 ### Per Release

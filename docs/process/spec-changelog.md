@@ -1,4 +1,4 @@
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
 
 # {{PROJECT_NAME}} — Spec Changelog
 
@@ -148,7 +148,7 @@ WHAT DOESN'T COUNT:
 - CI/tooling/dependency changes
 
 WHEN TO UPDATE:
-- During /project-update protocol (after each sprint merge)
+- During /sprint-update protocol (after each sprint merge)
 - During /hotfix (if the fix changes spec-level behavior)
 - During /plan (if scope is cut — REMOVED entries)
 
@@ -164,4 +164,4 @@ INSPIRED BY:
 See guides/10-delta-tracking.md for full documentation of this convention.
 -->
 
-[← Back to Root](../README.md)
+[← Back to Root](../../README.md)
