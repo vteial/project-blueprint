@@ -26,7 +26,7 @@ But it doesn't answer:
 │  .kiro/steering/project-spec.md                                 │
 │  ─────────────────────────────                                  │
 │  "What IS" — the current state of the system                    │
-│  Updated in-place via /project-update                           │
+│  Updated in-place via /sprint-update                           │
 │  Always reflects the LATEST truth                               │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
@@ -34,7 +34,7 @@ But it doesn't answer:
 │  docs/spec-changelog.md                                         │
 │  ────────────────────────                                       │
 │  "What CHANGED" — cumulative history of all spec changes        │
-│  Appended (never rewritten) via /project-update                 │
+│  Appended (never rewritten) via /sprint-update                 │
 │  Preserves the narrative of evolution                           │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
@@ -42,7 +42,7 @@ But it doesn't answer:
 │  docs/sprint-tracker.md (inline delta summary)                  │
 │  ─────────────────────────────────────────────                  │
 │  "What changed THIS sprint" — lightweight per-sprint summary    │
-│  Written during /project-update for quick reference             │
+│  Written during /sprint-update for quick reference             │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -204,12 +204,12 @@ This is lightweight — just enough to know what changed at a glance.
 
 ---
 
-## Integration with /project-update
+## Integration with /sprint-update
 
-The `/project-update` protocol now includes delta tracking as step 2b:
+The `/sprint-update` protocol now includes delta tracking as step 2b:
 
 ```
-/project-update (after sprint merge):
+/sprint-update (after sprint merge):
 
 1. Create branch: docs/sprintN-update
 2. Update clerical docs:
@@ -224,7 +224,7 @@ The `/project-update` protocol now includes delta tracking as step 2b:
 4. Commit, push, create docs PR
 ```
 
-**The key insight:** The steering spec gets updated **in-place** (always current), while the changelog gets **appended** (always historical). Both happen in the same `/project-update` run.
+**The key insight:** The steering spec gets updated **in-place** (always current), while the changelog gets **appended** (always historical). Both happen in the same `/sprint-update` run.
 
 ---
 
@@ -232,7 +232,7 @@ The `/project-update` protocol now includes delta tracking as step 2b:
 
 | Trigger | What to Do |
 |---------|------------|
-| `/project-update` runs | Append entry to spec-changelog.md + add inline delta to sprint-tracker |
+| `/sprint-update` runs | Append entry to spec-changelog.md + add inline delta to sprint-tracker |
 | `/hotfix` changes spec-level behavior | Add a hotfix entry to spec-changelog.md |
 | `/plan` changes scope/removes features | Add a planning entry to spec-changelog.md |
 | Refactoring (no behavior change) | **No delta needed** (spec didn't change) |
@@ -317,7 +317,7 @@ This convention is inspired by [OpenSpec's](https://github.com/Fission-AI/OpenSp
 | `openspec/specs/` (source of truth) | `.kiro/steering/project-spec.md` |
 | `openspec/changes/*/specs/` (deltas) | Inline delta in `sprint-tracker.md` |
 | `openspec/changes/archive/` (history) | `docs/spec-changelog.md` |
-| `/opsx:archive` (merge command) | `/project-update` protocol step |
+| `/opsx:archive` (merge command) | `/sprint-update` protocol step |
 | CLI-dependent tooling | Plain Markdown, zero tooling |
 
 ---

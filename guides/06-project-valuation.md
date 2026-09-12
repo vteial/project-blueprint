@@ -142,7 +142,7 @@ Each sprint in the tracker should note total hours:
 | Trigger | Action |
 |---------|--------|
 | After every coding session | Log session in valuation report |
-| After `/finish-sprint` | Calculate sprint totals |
+| After `/sprint-finish` | Calculate sprint totals |
 | After infrastructure work | Log in infrastructure table |
 | Before client invoice | Verify totals, generate summary |
 | At project milestone | Add to executive summary |

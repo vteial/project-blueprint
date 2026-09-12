@@ -105,7 +105,7 @@ Before each sprint completion, verify:
 - [ ] No TypeScript/lint errors
 - [ ] Responsive on mobile + desktop
 - [ ] Spec delta documented (ADDED/MODIFIED/REMOVED in sprint tracker)
-- [ ] Docs updated (`/project-update`)
+- [ ] Docs updated (`/sprint-update`)
 - [ ] Sprint tracker current
 
 ## Change Tracking
@@ -116,7 +116,7 @@ For the **change history** (what was added, modified, or removed and when), see:
 - `docs/spec-changelog.md` — Cumulative delta log (append-only, per sprint)
 - `docs/sprint-tracker.md` — Inline `### Spec Delta` section per completed sprint
 
-**Convention:** When this spec is updated via `/project-update`, also append the corresponding delta entry to `docs/spec-changelog.md`. See `guides/10-delta-tracking.md` for the full convention.
+**Convention:** When this spec is updated via `/sprint-update`, also append the corresponding delta entry to `docs/spec-changelog.md`. See `guides/10-delta-tracking.md` for the full convention.
 
 <!--
 INSTRUCTIONS FOR FILLING THIS TEMPLATE:

@@ -1,5 +1,7 @@
 # Sprint Tracker
 
+> **Reviewed:** vX.Y.Z · **Next review:** every release (docs-audit gate).
+
 ## Sprint 0 — Project Setup (Completed)
 
 **Status:** Completed
@@ -222,7 +224,7 @@
 <!-- CONVENTIONS:
 - Status icons: ✅ Done | 🔄 In Progress | 📋 Planned | ⏸️ Blocked | ❌ Cancelled
 - Each sprint should list 4-8 tasks
-- Update this file with /finish-sprint or /project-update
+- Update this file with /sprint-finish or /sprint-update
 - Moved tasks: note original sprint in "Notes" column
 - Keep completed sprints for history; collapse if file gets too long
 

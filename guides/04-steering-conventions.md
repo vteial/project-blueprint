@@ -119,7 +119,7 @@ Explicit rules (AI follows these literally):
 
 ### 5. Current State
 
-What exists NOW (updated with `/project-update`):
+What exists NOW (updated with `/sprint-update`):
 
 ```markdown
 ## Current State
@@ -265,7 +265,7 @@ Multi-platform app for freelancers: invoices, time tracking, clients.
 
 ## Steering + Delta Tracking
 
-The steering file represents **current state** — it answers "how does the system work right now?" It is updated **in-place** during `/project-update`.
+The steering file represents **current state** — it answers "how does the system work right now?" It is updated **in-place** during `/sprint-update`.
 
 But updating in-place loses history. To preserve the narrative of *what changed and when*, we use **delta tracking** alongside the steering file:
 

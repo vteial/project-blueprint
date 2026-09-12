@@ -8,7 +8,7 @@ This workflow is designed for **solo developers or small teams** working with AI
 
 ## Why Each Protocol
 
-### `/start-sprint` — Context Loading
+### `/sprint-start` — Context Loading
 
 **Problem it solves:** Every coding session starts cold. The AI doesn't remember what you did yesterday, and you might not either.
 
@@ -20,7 +20,7 @@ This workflow is designed for **solo developers or small teams** working with AI
 
 **Real example (Nidhi Seermai, Sprint 3):**
 ```
-/start-sprint 3
+/sprint-start 3
 
 Sprint 3: Polish & Extended Features
 Branch: sprint-3/main (created from main)
@@ -36,7 +36,7 @@ Planned tasks:
 Continuing from Sprint 2: Dashboard + analytics operational.
 ```
 
-### `/finish-sprint` — Clean Handoff
+### `/sprint-finish` — Clean Handoff
 
 **Problem it solves:** Without a clean finish, tasks bleed between sprints. You lose track of what's done vs what's "mostly done."
 
@@ -49,7 +49,7 @@ Continuing from Sprint 2: Dashboard + analytics operational.
 
 **Real example (Saranidhi, Sprint 2):**
 ```
-/finish-sprint 2
+/sprint-finish 2
 
 Sprint 2 Summary:
 - Planned: 6 tasks
@@ -61,10 +61,10 @@ Metrics:
 - Coverage: 35% → 52% (+17%)
 
 Sprint branch merged to main.
-Documentation updated via /project-update.
+Documentation updated via /sprint-update.
 ```
 
-### `/project-update` — Living Documentation
+### `/sprint-update` — Living Documentation
 
 **Problem it solves:** Docs go stale within hours of writing them. By the time you need them (security review, client demo, onboarding), they're wrong.
 
@@ -77,7 +77,7 @@ Documentation updated via /project-update.
 
 **Real example:**
 ```
-/project-update
+/sprint-update
 
 Updated:
 ✓ docs/project-evaluation.md — Tests: 34→38, Coverage: 62%→68%
@@ -123,7 +123,7 @@ Acceptance: User can create projects, assign expenses, filter by project
 - Deploys immediately after merge
 - Gets logged as unplanned work in tracker
 
-### `/rollout` — Deployment Safety Net
+### `/release-finish` — Deployment Safety Net
 
 **Problem it solves:** "It works on my machine" → broken production. Checklists prevent forgotten steps.
 
@@ -151,30 +151,30 @@ Acceptance: User can create projects, assign expenses, filter by project
 
 ### Solo Developer
 
-Use all protocols as-is. The sprint structure keeps you honest with yourself about progress. `/project-update` is especially valuable — it's your "standup" with yourself.
+Use all protocols as-is. The sprint structure keeps you honest with yourself about progress. `/sprint-update` is especially valuable — it's your "standup" with yourself.
 
 ### Small Team (2-5)
 
 - Add PR reviews as a gate
 - Sprint planning becomes a conversation (15 min)
 - Each person owns specific modules
-- `/project-update` becomes the team sync artifact
+- `/sprint-update` becomes the team sync artifact
 
 ### Without Kiro
 
 The protocols are just checklists. Without an AI to automate them:
-- `/start-sprint` → Create branch manually, write sprint tasks in tracker
-- `/finish-sprint` → Review tracker, move tasks, merge manually
-- `/project-update` → Update docs by hand (less frequent, that's okay)
+- `/sprint-start` → Create branch manually, write sprint tasks in tracker
+- `/sprint-finish` → Review tracker, move tasks, merge manually
+- `/sprint-update` → Update docs by hand (less frequent, that's okay)
 - `/plan` → Write plan in an issue or doc before coding
 
 ## Common Pitfalls
 
 | Pitfall | Symptom | Fix |
 |---------|---------|-----|
-| Skipping `/finish-sprint` | Tasks bleed between sprints | Make it a ritual |
+| Skipping `/sprint-finish` | Tasks bleed between sprints | Make it a ritual |
 | Over-planning | Sprint takes 3 days to plan | Limit to 4-8 tasks/sprint |
-| Never updating docs | Stale test counts, wrong architecture | Run `/project-update` weekly minimum |
+| Never updating docs | Stale test counts, wrong architecture | Run `/sprint-update` weekly minimum |
 | Sprint scope creep | "Just one more feature" | Move to next sprint instead |
 | Hotfix without test | Bug comes back later | Require regression test |
-| Deploying without checklist | Missing env var breaks prod | Always use `/rollout` |
+| Deploying without checklist | Missing env var breaks prod | Always use `/release-finish` |

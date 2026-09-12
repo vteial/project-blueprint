@@ -1,5 +1,10 @@
 # Project Valuation Report
 
+> **Reviewed:** vX.Y.Z · **Next review:** every `/sprint-update` + `/release-update`.
+> **Minimalist by design:** hours-per-phase + one-row-per-sprint delivery + exec summary.
+> Do **not** add a per-commit timeline (→ `git log`) or a per-feature deliverables list
+> (→ `sprint-tracker.md` + `CHANGELOG.md`) — those duplicate and rot.
+
 ## Executive Summary
 
 **Project:** {{PROJECT_NAME}}

@@ -1,5 +1,9 @@
 # Security Review
 
+> **Reviewed:** vX.Y.Z · **Next review:** at each **major (X) release**, or whenever the
+> **data/network boundary changes** (new backend, cloud API, accounts, off-device data).
+> A stable local-first posture does not need a per-sprint review.
+
 ## Data Storage
 
 | Concern | Implementation | Status | Notes |

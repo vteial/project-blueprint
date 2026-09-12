@@ -1,4 +1,6 @@
-# Project Plan
+# Architecture Reference
+
+> **Reviewed:** vX.Y.Z · **Next review:** every release (or when infra/schema/patterns change).
 
 ## Intent & Objectives
 
