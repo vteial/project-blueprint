@@ -1,5 +1,11 @@
 {
   "ignoreCommand": "chmod +x ./ignore_build.sh && ./ignore_build.sh",
+  "git": {
+    "deploymentEnabled": {
+      "docs/**": false,
+      "plan/**": false
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",

@@ -87,6 +87,39 @@ a headless QA agent can't reach them. The permanent fix is **Protection Bypass f
 Protection stays **on** for humans; this only lets the automated run through. Reference this in
 `/release-start` so the preview access details are handed to QA-Verify every release.
 
+### 3. Deployment quota — skipped builds still count
+
+Free/Hobby tiers cap **deployments per day** (Vercel Hobby = 100/24h). Two traps exhaust it
+faster than teams expect:
+
+- **A skipped `ignoreCommand` build still counts as a deployment.** The host spins up a
+  *canceled* deployment just to evaluate the skip, and canceled/skipped deployments count
+  toward the daily quota. So the ignore step (§1) saves build **minutes**, **not** deployment
+  **count** — do not rely on it for quota. *(Content rephrased from Vercel docs/community for
+  licensing.)*
+- **Multiple projects on one repo multiply it.** If the repo is connected to two projects
+  (e.g. a prod and a separate staging project), each push can emit a deployment **per project**.
+
+**The real lever is per-branch deploy control**, not the ignore step:
+
+- **`vercel.json` → `git.deploymentEnabled`** (committed) — a map of `branch-glob: false`
+  (minimatch). A branch set to `false` is **never deployed → never counts**. Unspecified
+  branches default to `true` (fail-safe: new code-branch families still preview). The
+  [template](../templates/deployment/vercel.json) denies `docs/**` + `plan/**` — adopt a
+  **branch-naming convention** that separates *code* branches (get a preview) from
+  *docs/planning* branches (never deploy), and keep this list in sync with it.
+- **Second/staging project → deploy only its own branch.** In that project's dashboard,
+  turn **Preview → Branch Tracking OFF** so it deploys only its production branch (e.g.
+  `main`) and stops emitting a redundant preview per push.
+
+**Net effect:** a docs/planning push = **0 deployments**; a code-branch push = **1** (the
+prod project's PR preview — which is exactly the pre-merge smoke-test surface). This keeps a
+push-dense release lifecycle (spec → sprint → release, many docs-only PRs) under the cap.
+
+> **Rule of thumb:** if a branch will never be previewed or smoke-tested (anything
+> docs/planning), it should not deploy. Encode that in `git.deploymentEnabled`, mirror it in
+> your branch-naming convention, and set any extra Vercel projects to their-branch-only.
+
 ## `/release-finish` Checklist Template
 
 ```markdown
